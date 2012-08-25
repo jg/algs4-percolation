@@ -91,12 +91,6 @@ public class Percolation {
   // index of the starting element in the UF structure
   private int endIndex() { return this.endIndex; }
 
-  private Coords[] openNeighbours(int i, int j) {
-    return openNeighbours(new Coords(i, j)); 
-  }
-
-  private Coords[] neighbours(int i, int j) { return neighbours(new Coords(i, j)); }
-
   private boolean isOpen(Coords c) {
     if (getCellAt(c) ==  State.OPEN) return true;
     return false;
@@ -118,11 +112,6 @@ public class Percolation {
     grid[coords[0]][coords[1]] = state;
   }
 
-  public boolean connected(Coords c1, Coords c2) {
-    return unionFind.connected(c1.index(), c2.index());
-  }
-
-
   private int[] mapToGrid(Coords c) {
     int m = c.row() - 1;
     int n = c.column() - 1;
@@ -143,7 +132,7 @@ public class Percolation {
     return (index >= 0) && (index <= gridSize-1);
   }
 
-  public void printGrid() {
+  private void printGrid() {
     for (int i = 1; i <= gridSize; i++) {
       for (int j = 1; j <= gridSize; j++) {
         if (getCellAt(new Coords(i, j)) == State.OPEN)
